@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block content %}
+
+<!-- Live Webcam-->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1 class="display-5 fw-bold text-center mb-4">Live Webcam</h1>
+      <!-- Video Feed Section -->
+      <div class="video-container text-center">
+        <img
+          src="{{ url_for('video_feed') }}"
+          class="img-fluid rounded"
+          alt="Webcam Feed"
+        />
+      </div>
+      <!-- End Video Feed Section -->
+      <!-- Emotion Display -->
+      <div class="emotion-display text-center mt-4">
+        <h2>Emotion: <span id="emotion-text">Loading...</span></h2>
+        <h3>Person: <span id="person-text"></span></h3>
+        <!-- Display recognized person's name -->
+      </div>
+      <!-- End Emotion Display -->
+    </div>
+  </div>
+</div>
+<!-- End Live Webcam -->
+
+{% endblock content %}

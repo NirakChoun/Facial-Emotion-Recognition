@@ -1,0 +1,143 @@
+{% extends "layout.html" %} {% block content %}
+
+<!-- Hero -->
+<div class="px-4 py-5 my-5 text-center">
+  <img
+    class="d-block mx-auto mb-4"
+    src="static/images/fer-hero.png"
+    alt=""
+    width="128"
+    height="128"
+  />
+  <h1 class="display-5 fw-bold text-body-emphasis">
+    Facial Emotion Recognition
+  </h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">
+      Detect human facial expression and determine their emotion through <br />
+      <span class="highlight">webcam</span>,
+      <span class="highlight">screen sharing</span> or
+      <span class="highlight">upload image/video file</span>
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <button
+        type="button"
+        class="btn btn-primary btn-lg px-4 gap-3"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModalCenter"
+      >
+        Live Detection
+      </button>
+    </div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-3">
+      <button
+        type="button"
+        class="btn btn-secondary btn-lg px-4 gap-3"
+        data-bs-toggle="modal"
+        data-bs-target="#fileUpload"
+      >
+        Upload File
+      </button>
+    </div>
+  </div>
+</div>
+<!-- End Hero -->
+
+<!-- Live Detection Features Modal -->
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Choose a Feature</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="/start_webcam" method="post">
+          <div class="d-grid gap-2 mb-3">
+            <button type="submit" class="btn btn-primary btn-lg">
+              Use Webcam
+            </button>
+          </div>
+        </form>
+        <form action="/start_screen" method="post">
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-warning btn-lg">
+              Share Screen
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Live Detection Features Modal -->
+
+<!-- File Upload Feature Modal -->
+<div
+  class="modal fade"
+  id="fileUpload"
+  tabindex="-1"
+  aria-labelledby="fileUploadLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fileUploadLabel">File Upload</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="/upload_file" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="formFile" class="form-label"
+              >Default file input example</label
+            >
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              accept="image/png, image/jpeg"
+              name="file"
+              required
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End File Upload Feature Modal -->
+
+{% endblock content %}

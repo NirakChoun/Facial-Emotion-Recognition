@@ -1,0 +1,55 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Registered People</h2>
+  <div class="row">
+    {% for person in registered_people %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='uploads/' + person.photo_path.split('/')[-1]) }}"
+          class="card-img-top rounded-circle mx-auto mt-3"
+          alt="{{ person.name }}"
+          style="width: 150px; height: 150px; object-fit: cover"
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ person.name }}</h5>
+          <!-- Edit Button -->
+          <a
+            href="{{ url_for('edit_person', person_id=person.id) }}"
+            class="btn btn-warning"
+            >Edit</a
+          >
+          <!-- Delete Button -->
+          <form
+            method="POST"
+            action="{{ url_for('delete_person', person_id=person.id) }}"
+            class="d-inline"
+            onsubmit="return confirm('Are you sure you want to delete this person?');"
+          >
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <form method="POST" enctype="multipart/form-data" action="/register_person">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" name="name" required />
+    </div>
+    <div class="mb-3">
+      <label for="photo" class="form-label">Photo</label>
+      <input
+        type="file"
+        class="form-control"
+        id="photo"
+        name="photo"
+        accept="image/*"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Register Person</button>
+  </form>
+</div>
+{% endblock content %}

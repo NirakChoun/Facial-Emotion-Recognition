@@ -1,0 +1,32 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container mt-4">
+  <h2>Edit Person</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        value="{{ person.name }}"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="photo" class="form-label">Photo</label>
+      <input
+        type="file"
+        class="form-control"
+        id="photo"
+        name="photo"
+        accept="image/*"
+      />
+      <small class="form-text text-muted"
+        >Leave this empty if you don't want to change the photo.</small
+      >
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+</div>
+{% endblock content %}

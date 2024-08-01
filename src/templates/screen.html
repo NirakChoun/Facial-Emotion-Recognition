@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block content %}
+
+<!-- Live Share Screen -->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 mx-auto">
+      <h1 class="display-5 fw-bold text-center mb-4">Live Screen Sharing</h1>
+      <!-- Video Feed Section -->
+      <div class="video-feed-container">
+        <img
+          src="{{ url_for('screen_feed') }}"
+          alt="Screen Share Feed"
+          class="img-fluid rounded"
+        />
+      </div>
+      <!-- End Video Feed Section -->
+
+      <!-- Emotion Display -->
+      <div class="emotion-display text-center mt-4">
+        <h2>Emotion: <span id="emotion-text">Loading...</span></h2>
+        <h3>Person: <span id="person-text"></span></h3>
+      </div>
+      <!-- End Emotion Display -->
+    </div>
+  </div>
+</div>
+<!-- End Live Share Screen -->
+
+{% endblock content %}
